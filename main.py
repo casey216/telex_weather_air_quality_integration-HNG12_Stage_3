@@ -83,6 +83,14 @@ def handle_weather_request(payload: MonitorPayload):
 
     send_message_to_telex(payload, weather_data)
 
+def get_weather(location: str):
+    api_key = os.getenv("API_KEY")
+    weather_api_url = f"https://api.weatherapi.com/v1/current.json?key={api_key}&q={location}&aqi=yes"
+
+    response = requests.get(weather_api_url)
+
+    return response.json()
+
 @app.post('/tick', status_code=202)
 def handle_incoming_request(payload: MonitorPayload, background_tasks: BackgroundTasks):
     background_tasks.add_task(handle_weather_request, payload)
