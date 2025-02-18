@@ -111,9 +111,9 @@ def send_message_to_telex(payload: MonitorPayload, weather_data: dict):
     
     data = {
         "message": message,
-        "username": "Uptime Monitor",
-        "event_name": "Uptime Check",
-        "status": "error"
+        "username": "Weather and Air Quality Monitor",
+        "event_name": "Weather and Air Quality check",
+        "status": "success"
     }
 
     requests.post(payload.return_url, json=data)
