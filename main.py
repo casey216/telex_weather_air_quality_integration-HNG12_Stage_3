@@ -91,6 +91,33 @@ def get_weather(location: str):
 
     return response.json()
 
+def send_message_to_telex(payload: MonitorPayload, weather_data: dict):
+
+    message = f"""
+    Location: {weather_data['location']['name']}
+    Temp.: {weather_data['current']['temp_c']} deg. celsius
+    Condition: {weather_data['current']['condition']['text']}
+    Wind Speed: {weather_data['current']['wind_kph']} kmph
+    Pressure: {weather_data['current']['pressure_mb']} milibar
+    Air Quality:
+        CO2: {weather_data['current']['air_quality']['co']}
+        NO2: {weather_data['current']['air_quality']['no2']}
+        O3: {weather_data['current']['air_quality']['o3']}
+        SO2: {weather_data['current']['air_quality']['so2']}
+        Fine Particle Matter: {weather_data['current']['air_quality']['pm2_5']}
+        Particle Matter: {weather_data['current']['air_quality']['pm10']}
+        Air Quality Index: {weather_data['current']['air_quality']['us-epa-index']}
+                """
+    
+    data = {
+        "message": message,
+        "username": "Uptime Monitor",
+        "event_name": "Uptime Check",
+        "status": "error"
+    }
+
+    requests.post(payload.return_url, json=data)
+
 @app.post('/tick', status_code=202)
 def handle_incoming_request(payload: MonitorPayload, background_tasks: BackgroundTasks):
     background_tasks.add_task(handle_weather_request, payload)
