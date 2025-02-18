@@ -42,7 +42,7 @@ def get_integration_json(request: Request):
             "descriptions": {
                 "app_name": "Weather and Air Quality Monitor",
                 "app_description": "A Weather and Air Quality Monitor for a Specific Location",
-                "app_logo": "https://ibb.co/SLdFBnf",
+                "app_logo": "https://i.ibb.co/B1r0BZn/freepik-abstract-logo-for-weather-and-air-quality-using-in-18737.jpg",
                 "app_url": base_url,
                 "background_color": "#fff",
             },
