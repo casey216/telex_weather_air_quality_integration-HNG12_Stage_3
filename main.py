@@ -75,3 +75,13 @@ def get_integration_json(request: Request):
     }
 
     return integration_json
+
+
+@app.post('/tick', status_code=202)
+def handle_incoming_request(payload: MonitorPayload, background_tasks: BackgroundTasks):
+    background_tasks.add_task(handle_weather_request, payload)
+    return {"status": "accepted"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app)
