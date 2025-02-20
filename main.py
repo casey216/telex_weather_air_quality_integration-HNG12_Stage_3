@@ -66,7 +66,7 @@ def get_integration_json(request: Request):
                     "label": "interval",
                     "type": "text",
                     "required": True,
-                    "default": "0 * * * *",
+                    "default": "* * * * *",
                 },
             ],
             "target_url": "",
