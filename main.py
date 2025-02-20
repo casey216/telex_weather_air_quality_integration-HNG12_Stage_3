@@ -107,7 +107,7 @@ def send_message_to_telex(payload: MonitorPayload, weather_data: dict):
         Fine Particle Matter: {weather_data['current']['air_quality']['pm2_5']}
         Particle Matter: {weather_data['current']['air_quality']['pm10']}
         Air Quality Index: {weather_data['current']['air_quality']['us-epa-index']}
-                """
+    """
     
     data = {
         "message": message,
